@@ -1,0 +1,3 @@
+[submodule "src/mad-gui"]
+	path = src/mad-gui
+	url = https://github.com/mad-lab-fau/mad-gui.git
