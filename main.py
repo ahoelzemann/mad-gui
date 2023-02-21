@@ -5,7 +5,6 @@ from custom_importer import CustomImporter
 from custom_importer import CustomExporter
 from mad_gui.config import BaseTheme
 from PySide2.QtGui import QColor
-from mad_gui.plugins.base import BaseImporter
 
 
 class MyTheme(BaseTheme):
