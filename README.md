@@ -7,7 +7,7 @@ you will need to have git https://git-scm.com/ and anaconda https://www.anaconda
 4. cd into the new folder
 5. execute the following command in your terminal: **_git submodule update --init --recursive_**
 6. activate your new conda environment **_conda activate mypython38_**
-7. install all needed requirements by running  **_pip install -r requirements.txt_**
+7. install all needed requirements by running  **_pip install -r requirements.txt_** select (s) switch if asked if you would like to switch to the forked repo.
 8. run the GUI **_python main.py_**
 
 
