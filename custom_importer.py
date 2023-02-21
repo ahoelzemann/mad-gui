@@ -40,8 +40,8 @@ class CustomImporter(BaseImporter):
         #               " Afterwards, remove this warning.")
         # sensor_data = pd.read_csv(file_path, names=["acc_x", "acc_y", "acc_z"])[1:]
         #
-        sampling_rate = 25
-        # sampling_rate = 12.5
+        # sampling_rate = 25
+        sampling_rate = 12.5
         subject_data = []
         paths = get_all_daily_files(file_path)
         binary_files = list(map(readBinFile, paths))
