@@ -5,9 +5,10 @@ you will need to have git https://git-scm.com/ and anaconda https://www.anaconda
 2. create a virgin python 3.8 environment by executing **_conda create -n mypython38 python=3.8_**  **_!!! you change the name from mypython38 to something else !!!_**
 3. clone this repository by executing **_git clone https://github.com/ahoelzemann/mad-gui-adaptions.git_**
 4. cd into the new folder
-5. activate your new conda environment **_conda activate mypython38_**
-6. install all needed requirements by running  **_pip install -r requirements.txt_**
-7. run the GUI **_python main.py_**
+5. execute the following command in your terminal: git submodule update --init --recursive
+6. activate your new conda environment **_conda activate mypython38_**
+7. install all needed requirements by running  **_pip install -r requirements.txt_**
+8. run the GUI **_python main.py_**
 
 
 For more information about the software itself please visit https://github.com/mad-lab-fau/mad-gui
