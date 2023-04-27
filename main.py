@@ -24,14 +24,15 @@ class Self_Recall_Labels(BaseRegionLabel):
     name = "Activity"
     color = [255, 0, 127, 70]
     descriptions = {
-        'walking': None,
-        'running': None,
-        'cycling': None,
-        'car_driving': None,
-        'cooking': None,
-        'playing_an_instrument': None,
-        'horse_riding': None,
-        'other': None}
+        'sitting': None,
+        'walking': {'dribbling': None, 'shoot': {'penalty_shot': None, '2_point_shot': None, '3_point_shot': None},
+                    'layup': None, 'pass': None, 'rebound': None},
+        'running': {'dribbling': None, 'shoot': {'penalty_shot': None, '2_point_shot': None, '3_point_shot': None},
+                    'layup': None, 'pass': None, 'rebound': None},
+        'standing': {'dribbling': None, 'shoot': {'penalty_shot': None, '2_point_shot': None, '3_point_shot': None},
+                     'layup': None, 'pass': None, 'rebound': None},
+        'jumping': {'shoot': {'penalty_shot': None, '2_point_shot': None, '3_point_shot': None}, 'layup': None,
+                    'pass': None, 'rebound': None}}
 
 
 start_gui(plugins=[CustomImporter, CustomExporter], theme=MyTheme, labels=[Self_Recall_Labels])
