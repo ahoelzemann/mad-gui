@@ -23,7 +23,7 @@ class CustomImporter(BaseImporter):
         ################################################
         # warnings.warn("The importer has no meaningful name yet."
         #               " Simply change the return string and remove this warning.")
-        return "AnnotationMatters"
+        return "Hangtime"
 
     def load_sensor_data(self, file_path: str) -> Dict:
         ##################################################################
@@ -39,25 +39,31 @@ class CustomImporter(BaseImporter):
         #               " Just make sure, that sensor_data is a pandas.DataFrame."
         #               " Afterwards, remove this warning.")
         # sensor_data = pd.read_csv(file_path, names=["acc_x", "acc_y", "acc_z"])[1:]
+        # index = sensor_data.index.copy()
+        # sensor_data['acc_x'] = sensor_data['acc_x'].astype(float)
+        # sensor_data['acc_y'] = sensor_data['acc_y'].astype(float)
+        # sensor_data['acc_z'] = sensor_data['acc_z'].astype(float)
+
+        # sensor_data = sensor_data.reset_index(drop=True)
         #
-        # sampling_rate = 25
-        sampling_rate = 12.5
+        sampling_rate = 50
+        # sampling_rate = 12.5
         subject_data = []
         paths = get_all_daily_files(file_path)
         binary_files = list(map(readBinFile, paths))
         for path in binary_files:
             subject_data.append(decompress(path))
         # concat every file in subject_data to create an array of data that contains the full day
-
+        #
         subject_data = make_equidistant(subject_data, sampling_rate)
         subject_data = pd.concat(subject_data)
         subject_data = resample_raw_data(subject_data, sampling_rate)
-
+        #
         # sensor_data = pd.read_csv(file_path)[["x_axis", "y_axis", "z_axis"]]
         # warnings.warn("Please load the sampling frequency from your source in Hz"
         #               " Afterwards, remove this warning.")
-        # sampling_rate_hz = 1 / sensor_data["time"].diff().mean()
-
+        # sampling_rate_hz = 1 / subject_data["time"].diff().mean()
+        #
         ##############################################################
         ###                      CAUTION                           ###
         ### If you only want to have one plot you do not need to   ###
@@ -68,7 +74,7 @@ class CustomImporter(BaseImporter):
         ##############################################################
         data = {
             "IMU Wrist": {
-                "sensor_data": subject_data[['x_axis', 'y_axis', 'z_axis']],
+                "sensor_data": subject_data[["x_axis", "y_axis", "z_axis"]],
                 "sampling_rate_hz": sampling_rate,
                 "start_time": subject_data['index']
             }
@@ -232,7 +238,7 @@ def readBinFile(path):
 
 
 def make_equidistant(subject_files, new_freq):
-    # true_freqs = []
+    result = []
     new_freq_ms = int(((1 / new_freq) * 1000))
 
     for fc in range(len(subject_files)):
